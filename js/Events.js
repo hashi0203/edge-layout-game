@@ -55,6 +55,12 @@ function mouseDragged(event) {
     /*
     see keyPressed
     */
+    console.log(event);
+    var branch = checkCloseBranch(20);
+    if (branch[1] != active_brc_index)
+      console.log("aaa");
+      return;
+    event.
 }
 
 // deactivate the selected branch
