@@ -65,7 +65,7 @@ function mouseDragged(event) {
   
     var mouseVec = new createVector(mouseX, mouseY);
     var moveVec = new createVector(event.movementX, event.movementY);
-    var original_mouseVec = mouseVec.sub(moveVec);
+    var original_mouseVec = mouseVec.copy().sub(moveVec);
     var branch = checkCloseBranch(20, original_mouseVec);
     if (!branch[1][active_brc_index]) return;
   
@@ -73,8 +73,8 @@ function mouseDragged(event) {
     var angle = brc[active_brc_index].rot;
     
     if (keyIsDown(CONTROL)) {
-        let v1 = original_mouseVec.sub(position);
-        let v2 = mouseVec.sub(position);
+        let v1 = original_mouseVec.copy().sub(position);
+        let v2 = mouseVec.copy().sub(position);
         const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
         angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
     } else {
@@ -104,16 +104,15 @@ function checkCloseBranch(thresholdDist, mouseVec) {
         for (var j = 0; j < vertices.length; j++) {
             var distance = mouseVec.dist(vertices[j]);
             if (distance < thresholdDist) {
-                if (distance < minDist) {
-                    closeBranch = true;
-                    minDist = distance;
-                    closeIndex = i;
-                }
+                // if (distance < minDist) {
+                //     closeBranch = true;
+                //     minDist = distance;
+                //     closeIndex = i;
+                // }
                 closeBranch = true;
                 branches[i] = true;
             }
         }
     }
-    console.log(minDist);
     return [closeBranch, branches];
 }
