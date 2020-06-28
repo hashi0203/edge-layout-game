@@ -62,10 +62,17 @@ function mouseDragged(event) {
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
   
-    console.log(mouseX, position);
-  
-    position.add(event.movementX, event.movementY);
-  
+    let mx = event.movementX;
+    let my = event.movementY;
+    if (keyIsDown(CONTROL)) {
+        let v1 = createVector(mouseX - mx - position.x, mouseY - my - position.y);
+        let v2 = createVector(mouseX - position.x, mouseY - position.y);
+        console.log(v1,v2);
+        angle += v1.angleBetween(v2);
+    } else {
+         position.add(mx, my); // change position
+    }
+    
     brc[active_brc_index].setPosition(position.x, position.y);
     brc[active_brc_index].setAngle(angle); // in radians
     score.updateScore();
