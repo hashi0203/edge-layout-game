@@ -196,6 +196,10 @@ Branch.prototype.drawBranch = function () {
     noStroke();
     fill(255, 0, 0, 50);
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+    
+    // var alpha = 200 + 55 * sin(frameCount);
+    // c = this.color.levels;
+    // this.color = color(c[0],c[1],c[2],alpha);
   }
   pop();
 };
@@ -206,10 +210,13 @@ Branch.prototype.updateColor = function () {
     this.color = gc;
   }
   if (this.island) this.color = color(255, 50, 0);
-  var alpha = 128 - 128 * sin(frameCount / 10);
-  print()
-  this.color = color(this.color[0],this.color[1],this.color[2],alpha);
-  // this.setAlpha(128 - 128 * sin(millis() / 100));
+  if (this.active) {
+    var alpha = 128 + 127 * sin(frameCount / 10);
+    console.log(this.color.levels[3]);
+    this.color.levels[3] = int(alpha);
+    console.log(this.color);
+    // this.setAlpha(128 - 128 * sin(millis() / 100));
+  }
 }
 
 Branch.prototype.drawIntersections = function () {
