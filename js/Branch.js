@@ -193,11 +193,11 @@ Branch.prototype.drawBranch = function () {
 
   if (this.active) {
     //  you can add more graphic effects here.
-    noStroke();
-    fill(255, 0, 0, 50);
-    ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+    // noStroke();
+    // fill(255, 0, 0, 50);
+    // ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
     
-    // var alpha = 200 + 55 * sin(frameCount);
+    // var alpha = 180 + 60 * sin(frameCount / 20);
     // c = this.color.levels;
     // this.color = color(c[0],c[1],c[2],alpha);
   }
@@ -205,18 +205,20 @@ Branch.prototype.drawBranch = function () {
 };
 
 Branch.prototype.updateColor = function () {
+  let alpha = (this.active) ? 180 + 60 * sin(frameCount / 20) : 255;
   let gc = this.group.getColor();
   if (gc !== undefined) {
-    this.color = gc;
+    gcc = gc.color.levels;
+    this.color = color(gcc[0],gcc[1],gcc[2],alpha);
   }
   if (this.island) this.color = color(255, 50, 0);
-  if (this.active) {
-    var alpha = 128 + 127 * sin(frameCount / 10);
-    console.log(this.color.levels[3]);
-    this.color.levels[3] = int(alpha);
-    console.log(this.color);
-    // this.setAlpha(128 - 128 * sin(millis() / 100));
-  }
+  // if (this.active) {
+  //   var alpha = 128 + 127 * sin(frameCount / 10);
+  //   console.log(this.color.levels[3]);
+  //   this.color.levels[3] = int(alpha);
+  //   console.log(this.color);
+  //   // this.setAlpha(128 - 128 * sin(millis() / 100));
+  // }
 }
 
 Branch.prototype.drawIntersections = function () {
