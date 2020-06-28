@@ -50,8 +50,8 @@ function mousePressed(event) {
     }  
 }
 
-function angleBetween(v) {
-  const dotmagmag = this.dot(v) / (this.mag() * v.mag());
+function angleBetween(v1,v2) {
+  const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
   // Mathematically speaking: the dotmagmag variable will be between -1 and 1
   // inclusive. Practically though it could be slightly outside this range due
   // to floating-point rounding issues. This can make Math.acos return NaN.
@@ -59,10 +59,10 @@ function angleBetween(v) {
   // Solution: we'll clamp the value to the -1,1 range
   let angle;
   angle = Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
-  angle = angle * Math.sign(this.cross(v).z || 1);
-  if (this.p5) {
-    angle = this.p5._fromRadians(angle);
-  }
+  angle = angle * Math.sign(v1.cross(v2).z || 1);
+  // if (v1.p5) {
+  //   angle = v1.p5._fromRadians(angle);
+  // }
   return angle;
 };
 
@@ -73,7 +73,7 @@ function mouseDragged(event) {
     */
   
     var branch = checkCloseBranch(20);
-    if (branch[1] != active_brc_index) return;
+    // if (branch[1] != active_brc_index) return;
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
@@ -83,8 +83,8 @@ function mouseDragged(event) {
     if (keyIsDown(CONTROL)) {
         let v1 = createVector(mouseX - mx - position.x, mouseY - my - position.y);
         let v2 = createVector(mouseX - position.x, mouseY - position.y);
-        console.log(v1,v2);
-        angle += v1.angleBetween(v2);
+        const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
+        angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
     } else {
          position.add(mx, my); // change position
     }
@@ -101,18 +101,24 @@ function mouseReleased() {
     */
 }
 
-function checkCloseBranch(minDist) {
+function checkCloseBranch(thresholdDist) {
     var closeBranch = false;
     var closeIndex = null;
     var mouseVec = new createVector(mouseX, mouseY);
+    var minDist = 
     for (var i = 0; i < brc.length; i++) {
         var vertices = brc[i].transformed_contour;
         for (var j = 0; j < vertices.length; j++) {
             var distance = mouseVec.dist(vertices[j]);
-            if (distance < minDist) {
-                closeBranch = true;
-                minDist = distance;
-                closeIndex = i;
+            if (distance < thresholdDist) {
+                if (distance < minDist) {
+                    closeBranch = true;
+                    minDist = distance;
+                    closeIndex = i;
+                } else {
+                    
+                }
+              
             }
         }
     }
