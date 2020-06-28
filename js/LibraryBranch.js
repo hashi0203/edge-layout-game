@@ -45,5 +45,5 @@ function createBranch(index, br) {
   branch.addBoundingBox(boundingWidth, boundingHeight);
   // branch.setInvalids(invalid_points);
   // random2D()
-  branch.initiateBranch(random(500), random(500), random(-PI, PI), random([true, false]));
+  branch.initiateBranch(20 + random(460), 20 + random(460), random(-PI, PI), random([true, false]));
 }

@@ -95,6 +95,7 @@ function checkCloseBranch(thresholdDist) {
     var branches = new Array(brc.length).fill(false)
     for (var i = 0; i < brc.length; i++) {
         var vertices = brc[i].transformed_contour;
+        if (i == active_brc_index) console.log(vertices.length);
         for (var j = 0; j < vertices.length; j++) {
             var distance = mouseVec.dist(vertices[j]);
             if (distance < thresholdDist) {

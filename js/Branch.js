@@ -195,12 +195,13 @@ Branch.prototype.drawBranch = function () {
   let c = this.color.levels;
   c[3] = alpha;
   this.color = color(c);
-  // if (this.active) {
-  //   //  you can add more graphic effects here.
-  //   noStroke();
-  //   fill(255, 0, 0, 50);
-  //   ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
-  // }
+  
+  if (this.active) {
+    //  you can add more graphic effects here.
+    noStroke();
+    fill(200, 200, 0, 100);
+    ellipse(this.pos.x, this.pos.y, this.radius/2, this.radius/2);
+  }
   pop();
 };
 
