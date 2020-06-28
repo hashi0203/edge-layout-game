@@ -50,6 +50,22 @@ function mousePressed(event) {
     }  
 }
 
+function angleBetween(v) {
+  const dotmagmag = this.dot(v) / (this.mag() * v.mag());
+  // Mathematically speaking: the dotmagmag variable will be between -1 and 1
+  // inclusive. Practically though it could be slightly outside this range due
+  // to floating-point rounding issues. This can make Math.acos return NaN.
+  //
+  // Solution: we'll clamp the value to the -1,1 range
+  let angle;
+  angle = Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
+  angle = angle * Math.sign(this.cross(v).z || 1);
+  if (this.p5) {
+    angle = this.p5._fromRadians(angle);
+  }
+  return angle;
+};
+
 // move and rotate 
 function mouseDragged(event) {
     /*
@@ -61,7 +77,7 @@ function mouseDragged(event) {
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
-  
+    
     let mx = event.movementX;
     let my = event.movementY;
     if (keyIsDown(CONTROL)) {
