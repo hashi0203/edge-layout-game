@@ -192,9 +192,9 @@ Branch.prototype.drawBranch = function () {
   this.drawIntersections();
   
   let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
-    let c = this.color.levels;
-    c[3] = 120 + 60 * sin(frameCount / 20);
-    this.color = color(c);
+  let c = this.color.levels;
+  c[3] = alpha;
+  this.color = color(c);
   // if (this.active) {
   //   //  you can add more graphic effects here.
   //   noStroke();
