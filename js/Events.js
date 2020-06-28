@@ -43,7 +43,8 @@ function mousePressed(event) {
     var branch = checkCloseBranch(20)[0];
     */
     
-    var branch = checkCloseBranch(20);
+    var mouseVec = new createVector(mouseX, mouseY);
+    var branch = checkCloseBranch(20, mouseVec);
     if (branch[0]) {
         for (var i = 0; i < brc.length; i++) brc[i].setSleep();
         for (var i = brc.length-1; i >= 0; i--) {
@@ -62,21 +63,22 @@ function mouseDragged(event) {
     see keyPressed
     */
   
-    var branch = checkCloseBranch(20);
+    var mouseVec = new createVector(mouseX, mouseY);
+    var moveVec = new createVector(event.movementX, event.movementY);
+    var original_mouseVec = mouseVec.sub(moveVec);
+    var branch = checkCloseBranch(20, original_mouseVec);
     if (!branch[1][active_brc_index]) return;
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
     
-    let mx = event.movementX;
-    let my = event.movementY;
     if (keyIsDown(CONTROL)) {
-        let v1 = createVector(mouseX - mx - position.x, mouseY - my - position.y);
-        let v2 = createVector(mouseX - position.x, mouseY - position.y);
+        let v1 = original_mouseVec.sub(position);
+        let v2 = mouseVec.sub(position);
         const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
         angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
     } else {
-         position.add(mx, my); // change position
+         position.add(moveVec); // change position
     }
     
     brc[active_brc_index].setPosition(position.x, position.y);
@@ -91,10 +93,9 @@ function mouseReleased() {
     */
 }
 
-function checkCloseBranch(thresholdDist) {
+function checkCloseBranch(thresholdDist, mouseVec) {
     var closeBranch = false;
     var closeIndex = null;
-    var mouseVec = new createVector(mouseX, mouseY);
     var minDist = thresholdDist;
     // 各枝がマウス上にあるか
     var branches = new Array(brc.length).fill(false)
@@ -113,5 +114,6 @@ function checkCloseBranch(thresholdDist) {
             }
         }
     }
+    console.log(minDist);
     return [closeBranch, branches];
 }
