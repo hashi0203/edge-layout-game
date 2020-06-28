@@ -55,12 +55,20 @@ function mouseDragged(event) {
     /*
     see keyPressed
     */
-    console.log(event);
+  
     var branch = checkCloseBranch(20);
-    if (branch[1] != active_brc_index)
-      console.log("aaa");
-      return;
-    event.
+    if (branch[1] != active_brc_index) return;
+  
+    var position = brc[active_brc_index].pos.copy();
+    var angle = brc[active_brc_index].rot;
+  
+    console.log(mouseX, position);
+  
+    position.add(event.movementX, event.movementY);
+  
+    brc[active_brc_index].setPosition(position.x, position.y);
+    brc[active_brc_index].setAngle(angle); // in radians
+    score.updateScore();
 }
 
 // deactivate the selected branch
