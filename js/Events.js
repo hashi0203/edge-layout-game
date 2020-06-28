@@ -48,7 +48,6 @@ function mousePressed(event) {
         active_brc_index = branch[1];
         brc[active_brc_index].setMoveActive();
     }
-    console.log(branch[0]);
 }
 
 // move and rotate 
@@ -94,8 +93,7 @@ function checkCloseBranch(thresholdDist) {
     // 各枝がマウス上にあるか
     var branches = new Array(brc.length).fill(false)
     for (var i = 0; i < brc.length; i++) {
-        var vertices = brc[i].transformed_contour;
-        if (i == active_brc_index) console.log(vertices.length);
+        var vertices = brc[i].getTransformedContour();
         for (var j = 0; j < vertices.length; j++) {
             var distance = mouseVec.dist(vertices[j]);
             if (distance < thresholdDist) {

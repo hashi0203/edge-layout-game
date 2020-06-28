@@ -199,8 +199,8 @@ Branch.prototype.drawBranch = function () {
   if (this.active) {
     //  you can add more graphic effects here.
     noStroke();
-    fill(200, 200, 0, 100);
-    ellipse(this.pos.x, this.pos.y, this.radius/2, this.radius/2);
+    fill(0, 0, 200, 150);
+    ellipse(this.pos.x, this.pos.y, this.radius/3, this.radius/3);
   }
   pop();
 };
