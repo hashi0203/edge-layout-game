@@ -47,24 +47,9 @@ function mousePressed(event) {
         for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
         active_brc_index = branch[1];
         brc[active_brc_index].setMoveActive();
-    }  
+    }
+    console.log(branch[0]);
 }
-
-function angleBetween(v1,v2) {
-  const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
-  // Mathematically speaking: the dotmagmag variable will be between -1 and 1
-  // inclusive. Practically though it could be slightly outside this range due
-  // to floating-point rounding issues. This can make Math.acos return NaN.
-  //
-  // Solution: we'll clamp the value to the -1,1 range
-  let angle;
-  angle = Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
-  angle = angle * Math.sign(v1.cross(v2).z || 1);
-  // if (v1.p5) {
-  //   angle = v1.p5._fromRadians(angle);
-  // }
-  return angle;
-};
 
 // move and rotate 
 function mouseDragged(event) {
@@ -73,7 +58,7 @@ function mouseDragged(event) {
     */
   
     var branch = checkCloseBranch(20);
-    // if (branch[1] != active_brc_index) return;
+    if (!branch[2][active_brc_index]) return;
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
@@ -105,7 +90,9 @@ function checkCloseBranch(thresholdDist) {
     var closeBranch = false;
     var closeIndex = null;
     var mouseVec = new createVector(mouseX, mouseY);
-    var minDist = 
+    var minDist = thresholdDist;
+    // 各枝がマウス上にあるか
+    var branches = new Array(brc.length).fill(false)
     for (var i = 0; i < brc.length; i++) {
         var vertices = brc[i].transformed_contour;
         for (var j = 0; j < vertices.length; j++) {
@@ -115,12 +102,10 @@ function checkCloseBranch(thresholdDist) {
                     closeBranch = true;
                     minDist = distance;
                     closeIndex = i;
-                } else {
-                    
                 }
-              
+                branches[i] = true;
             }
         }
     }
-    return [closeBranch, closeIndex];
+    return [closeBranch, closeIndex, branches];
 }
