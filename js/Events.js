@@ -7,6 +7,7 @@ function keyPressed() {
         else active_brc_index += 1; // add the index
         brc[active_brc_index].setMoveActive(); // select the branch by activating it
     }
+    console.log(active_brc_index);
 
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
@@ -44,9 +45,14 @@ function mousePressed(event) {
     
     var branch = checkCloseBranch(20);
     if (branch[0]) {
-        for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
-        active_brc_index = branch[1];
-        brc[active_brc_index].setMoveActive();
+        for (var i = 0; i < brc.length; i++) brc[i].setSleep();
+        for (var i = brc.length-1; i >= 0; i--) {
+            if (branch[1][i]) {
+                active_brc_index = i;
+                brc[active_brc_index].setMoveActive();
+                break;
+            }
+        }
     }
 }
 
@@ -57,7 +63,7 @@ function mouseDragged(event) {
     */
   
     var branch = checkCloseBranch(20);
-    if (!branch[2][active_brc_index]) return;
+    if (!branch[1][active_brc_index]) return;
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
@@ -102,9 +108,10 @@ function checkCloseBranch(thresholdDist) {
                     minDist = distance;
                     closeIndex = i;
                 }
+                closeBranch = true;
                 branches[i] = true;
             }
         }
     }
-    return [closeBranch, closeIndex, branches];
+    return [closeBranch, branches];
 }
