@@ -190,17 +190,17 @@ Branch.prototype.drawBranch = function () {
   // }
 
   this.drawIntersections();
-
-  if (this.active) {
-    //  you can add more graphic effects here.
-    // noStroke();
-    // fill(255, 0, 0, 50);
-    // ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
-    
+  
+  let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
     let c = this.color.levels;
     c[3] = 120 + 60 * sin(frameCount / 20);
     this.color = color(c);
-  }
+  // if (this.active) {
+  //   //  you can add more graphic effects here.
+  //   noStroke();
+  //   fill(255, 0, 0, 50);
+  //   ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+  // }
   pop();
 };
 

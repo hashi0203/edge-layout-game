@@ -41,6 +41,13 @@ function mousePressed(event) {
     and then select
     var branch = checkCloseBranch(20)[0];
     */
+    
+    var branch = checkCloseBranch(20);
+    if (branch[0]) {
+        for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
+        active_brc_index = branch[1];
+        brc[active_brc_index].setMoveActive();
+    }  
 }
 
 // move and rotate 
