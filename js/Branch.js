@@ -193,6 +193,7 @@ Branch.prototype.drawBranch = function () {
 
   if (this.active) {
     //  you can add more graphic effects here.
+    this.color.setAlpha(128 - 128 * sin(millis() / 100));
     noStroke();
     fill(255, 0, 0, 50);
     ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
@@ -206,8 +207,7 @@ Branch.prototype.updateColor = function () {
     this.color = gc;
   }
   if (this.island) this.color = color(255, 50, 0);
-};
-
+}
 
 Branch.prototype.drawIntersections = function () {
   for (var i = 0; i < this.joints.length; i++) {
