@@ -51,11 +51,9 @@ function draw() {
     
     var spanedSec = 0;
     flag = false;
-    console.log("aaa");
     // 1秒間隔で無名関数を実行
     var id = setInterval(function () {
  
-        console.log("abb");
         spanedSec++;
  
         // 経過時間 >= 待機時間の場合、待機終了。
@@ -65,7 +63,6 @@ function draw() {
             clearInterval(id);
         }
     }, 1000);
-    console.log("acs");
     flag = true;
   }
 }
