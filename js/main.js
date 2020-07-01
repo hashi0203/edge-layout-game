@@ -4,6 +4,7 @@ let brc = [];
 let boundary;
 let score;
 let active_brc_index;
+let flag;
 
 // preload branches BEFORE setup()
 function preload() {
@@ -20,6 +21,7 @@ function setup() {
 }
 
 function draw() {
+  flag = true;
   background(250);
   boundary.drawBoundary(); 
   boundary.drawActivePoints(4, color(255, 240, 0, 200));
@@ -37,17 +39,33 @@ function draw() {
     textStyle(BOLD);
     fill(50);
     text("Connected!", 60, height/2+20);
+//     var element = this.document.getElementById('target'),
+//         listener = {
+//       disableDefault: true,
+//       handleEvent: handleClickKeydown
+//     };
+
+//     element.addEventListener('click', listener, false);
+//     element.addEventListener('keydown', listener, false);
+//     setTimeout(handleTimeout, 3000, element, listener);
     
     var spanedSec = 0;
- 
+    flag = false;
+    console.log("aaa");
     // 1秒間隔で無名関数を実行
     var id = setInterval(function () {
+ 
+        console.log("abb");
         spanedSec++;
+ 
         // 経過時間 >= 待機時間の場合、待機終了。
         if (spanedSec >= 5) {
+ 
             // タイマー停止
             clearInterval(id);
         }
     }, 1000);
+    console.log("acs");
+    flag = true;
   }
 }
