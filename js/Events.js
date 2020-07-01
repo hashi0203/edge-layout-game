@@ -7,7 +7,6 @@ function keyPressed() {
         else active_brc_index += 1; // add the index
         brc[active_brc_index].setMoveActive(); // select the branch by activating it
     }
-    console.log(active_brc_index);
 
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
@@ -78,7 +77,14 @@ function mouseDragged(event) {
         const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
         angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
     } else {
-         position.add(moveVec); // change position
+        position.add(moveVec); // change position
+        if (position.x > 480) {
+            position.sub(moveVec.copy().mul((position.x-480)/moveVec.x))
+        } else if (position.x < 20) {
+            position.add(moveVec.copy().mul((position.x-20)/moveVec.x))
+        }
+            
+        console.log(position); 
     }
     
     brc[active_brc_index].setPosition(position.x, position.y);
