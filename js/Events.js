@@ -1,3 +1,12 @@
+function clamp(min,opt,max) {
+    if (opt < min) {
+        return min;
+    } else if (opt > max) {
+        return max;
+    }
+    return opt;
+};
+
 function keyPressed() {
 
     if (keyCode === ENTER) {
@@ -10,20 +19,24 @@ function keyPressed() {
 
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
+    var moveVec = new createVector(0, 0);
 
     if (keyCode === LEFT_ARROW) {
         if (keyIsDown(CONTROL)) angle -= 0.1 * PI; // change angle if Ctrl is pressed
-        else position.add(-10, 0); // change position
+        else moveVec.add(-10, 0); // change position
     } else if (keyCode === RIGHT_ARROW) {
         if (keyIsDown(CONTROL)) angle += 0.1 * PI; // change angle if Ctrl is pressed
-        else position.add(10, 0); // change position
+        else moveVec.add(10, 0); // change position
     }
     else if (keyCode === UP_ARROW) {
-        position.add(0, -10); // go up. Note that the value is mirrored due to the origin is top left corner.
+        moveVec.add(0, -10); // go up. Note that the value is mirrored due to the origin is top left corner.
     }
     else if (keyCode === DOWN_ARROW) {
-        position.add(0, 10); // go down
+        moveVec.add(0, 10); // go down
     }
+  
+    position.x = clamp(20, position.x + moveVec.x, 480);
+    position.y = clamp(20, position.y + moveVec.y, 430);
 
     brc[active_brc_index].setPosition(position.x, position.y);
     brc[active_brc_index].setAngle(angle); // in radians
@@ -77,14 +90,8 @@ function mouseDragged(event) {
         const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
         angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
     } else {
-        position.add(moveVec); // change position
-        if (position.x > 480) {
-            position.sub(moveVec.copy().mul((position.x-480)/moveVec.x))
-        } else if (position.x < 20) {
-            position.add(moveVec.copy().mul((position.x-20)/moveVec.x))
-        }
-            
-        console.log(position); 
+        position.x = clamp(20, position.x + moveVec.x, 480);
+        position.y = clamp(20, position.y + moveVec.y, 430);
     }
     
     brc[active_brc_index].setPosition(position.x, position.y);

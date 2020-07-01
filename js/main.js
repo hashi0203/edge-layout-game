@@ -37,5 +37,17 @@ function draw() {
     textStyle(BOLD);
     fill(50);
     text("Connected!", 60, height/2+20);
+    
+    var spanedSec = 0;
+ 
+    // 1秒間隔で無名関数を実行
+    var id = setInterval(function () {
+        spanedSec++;
+        // 経過時間 >= 待機時間の場合、待機終了。
+        if (spanedSec >= 5) {
+            // タイマー停止
+            clearInterval(id);
+        }
+    }, 1000);
   }
 }
