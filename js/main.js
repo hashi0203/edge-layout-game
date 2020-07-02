@@ -26,6 +26,7 @@ function draw() {
   boundary.drawActivePoints(4, color(255, 240, 0, 200));
   for (var i = 0; i < brc.length; i++){
     brc[i].drawBranch();
+    brc[i].drawIntersections();
   }
 
   // score.updateScore(); // this function is not here to avoid getting heavy. instead, it's calculated in Events.js

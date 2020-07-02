@@ -189,7 +189,7 @@ Branch.prototype.drawBranch = function () {
   //   ellipse(_pnt.x, _pnt.y, 10, 10);
   // }
 
-  this.drawIntersections();
+  // this.drawIntersections();
   
   let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
   let c = this.color.levels;

@@ -179,7 +179,7 @@ img {
   -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-.score-container .score-addition, .best-container .score-addition {
+.score-container .score-addition, .best-container .score-addition, .valid-container, .valid-addition, .invalid-container, .invalid-addition {
     position: absolute;
     right: 30px;
     color: red;
@@ -220,6 +220,14 @@ img {
 
 .best-container:after {
     content: "Best";
+}
+
+.valid-container:after {
+    content: "Valid Joints";
+}
+
+.invalid-container:after {
+    content: "Invalid Joints";
 }
 
 
