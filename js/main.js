@@ -38,34 +38,22 @@ function draw() {
       textStyle(BOLD);
       fill(50);
       text("Connected!", 60, height/2+20);
-  //     var element = this.document.getElementById('target'),
-  //         listener = {
-  //       disableDefault: true,
-  //       handleEvent: handleClickKeydown
-  //     };
-
-  //     element.addEventListener('click', listener, false);
-  //     element.addEventListener('keydown', listener, false);
-  //     setTimeout(handleTimeout, 3000, element, listener);
-
+    
+      // stop a little while when connected
       if (connected_flag == 0) {
           var spanedSec = 0;
           connected_flag = 1;
-          // 1秒間隔で無名関数を実行
+          // execute every 10 ms
           var id = setInterval(function () {
-
               spanedSec++;
               connected_flag = 1;
-
-              // 経過時間 >= 待機時間の場合、待機終了。
-              if (spanedSec >= 1000) {
-
-                  // タイマー停止
+              // if 1 sec passed
+              if (spanedSec >= 100) {
+                  connected_flag = 2;
                   clearInterval(id);
               }
           }, 10);
       }
-      connected_flag = 2;
     } else {
       connected_flag = 0;
     }

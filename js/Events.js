@@ -115,17 +115,13 @@ function mouseDragged(event) {
   
     // keep drag_flag false until 0.5 sec
     var spanedSec = 0;
-    // 1秒間隔で無名関数を実行
+    // execute every 10 ms
     var id = setInterval(function () {
-
         spanedSec++;
         drag_flag = true;
-
-        // 経過時間 >= 待機時間の場合、待機終了。
+        // if 0.5 sec passed
         if (spanedSec >= 50) {
-            
             drag_flag = false;
-            // タイマー停止
             clearInterval(id);
         }
     }, 10);

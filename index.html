@@ -32,15 +32,19 @@
     <div class="container" id="container">
       <div class="heading">
         <instruction>
-          <h1> Goal: Connect 4 corners by moving branches </h1>
+          <h1> Goal: Connect 4 corners by moving and rotating branches </h1>
           <h1> How to use: </h1> 
-          <p> - Select a branch by Enter key</p>
-          <p> - Move the branch by Up, Down, Left, Right keys </p>
-          <p> - Rotate the branch by Left or Right keys with Control key </p>
+          <ul>
+              <li>Select a branch by Click or Enter key</li>
+              <li>Move the branch by Drag or Up, Down, Left, Right keys </li>
+              <li>Rotate the branch by Drag or Left or Right keys with Control key </li>
+          </ul>
           <h1> Colors: </h1>
-          <p> - Green dots: valid joints. Red dots: invalid joints</p>
-          <p> - Invalid group: Red branches. Valid group: other colors.</p>
-          <!-- <p> Mirror the branch by Shift key </p> -->
+          <ul>
+              <li>Green dots: valid joints. Red dots: invalid joints</li>
+              <li>Invalid group: Red branches. Valid group: other colors.</li>
+              <!-- <p> Mirror the branch by Shift key </p> -->
+          </ul>
         </instruction>
 
 
@@ -53,6 +57,8 @@
       <div class="game-container">
         <div id="canvas0"></div>
       </div>
+      
+      
     </div>
   </body>
 </html>

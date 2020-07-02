@@ -58,7 +58,7 @@ h1{
     /*line-height: 1.65;*/
 }
 
-p {
+p,ul {
   text-align: left;
   /* left: 30px; */
   color: #000000;
