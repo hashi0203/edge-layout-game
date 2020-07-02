@@ -116,7 +116,7 @@ img {
     /* text-align: right; */
 }
 
-.score-container, .best-container {
+.score-container, .best-container, .valid-container, .invalid-container {
     position: relative;
     display: inline-block;
     background: #bbada0;
@@ -147,7 +147,7 @@ img {
 
 }
 
-.score-container:after, .best-container:after {
+.score-container:after, .best-container:after, .valid-container:after, .invalid-container:after {
     position: absolute;
     width: 100%;
     top: 10px;
@@ -179,7 +179,7 @@ img {
   -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-.score-container .score-addition, .best-container .score-addition, .valid-container, .valid-addition, .invalid-container, .invalid-addition {
+.score-container .score-addition, .best-container .score-addition, .valid-container .valid-addition, .invalid-container .invalid-addition {
     position: absolute;
     right: 30px;
     color: red;
@@ -576,7 +576,7 @@ img {
     width: 280px;
     margin: 0 auto; }
 
-  .score-container, .best-container {
+  .score-container, .best-container, .valid-container, .invalid-container {
     margin-top: 0;
     padding: 15px 10px;
     min-width: 40px; }
