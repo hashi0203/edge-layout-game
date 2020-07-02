@@ -1,3 +1,5 @@
+let drag_flag;
+
 function clamp(min,opt,max) {
     if (opt < min) {
         return min;
@@ -73,7 +75,7 @@ function mouseDragged(event) {
     /*
     see keyPressed
     */
-  
+    drag_flag = true;
     var mouseVec = new createVector(mouseX, mouseY);
     var moveVec = new createVector(event.movementX, event.movementY);
     var original_mouseVec = mouseVec.copy().sub(moveVec);
@@ -106,6 +108,23 @@ function mouseDragged(event) {
     brc[active_brc_index].setPosition(position.x, position.y);
     brc[active_brc_index].setAngle(angle); // in radians
     score.updateScore();
+  
+    // keep drag_flag false until 0.5 sec
+    var spanedSec = 0;
+    // 1秒間隔で無名関数を実行
+    var id = setInterval(function () {
+
+        spanedSec++;
+        drag_flag = true;
+
+        // 経過時間 >= 待機時間の場合、待機終了。
+        if (spanedSec >= 50) {
+            
+            drag_flag = false;
+            // タイマー停止
+            clearInterval(id);
+        }
+    }, 10);
 }
 
 // deactivate the selected branch
@@ -122,6 +141,8 @@ function mouseReleased() {
     var branch = checkCloseBranch(20)[0];
     */
     
+    // ignore release after draging
+    if (drag_flag) return;
     var mouseVec = new createVector(mouseX, mouseY);
     var branch = checkCloseBranch(20, mouseVec);
     if (branch[0]) {
