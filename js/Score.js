@@ -47,7 +47,7 @@ class Score {
 
   updateScore() {
     var _valid = this.valid;
-    var _invalid = 
+    var _invalid = this.invalid;
     this.initializeScore();
     this.calcJointScores();
 
@@ -76,6 +76,14 @@ class Score {
 
     if (difference > 0) animateObject(this.scoreContainer, "score-addition", difference);
     else if (difference < 0) animateObject(this.scoreContainer, "score-reduction", difference);
+    
+    var difference = this.valid - _valid;
+    if (difference > 0) animateObject(this.validContainer, "score-addition", difference);
+    else if (difference < 0) animateObject(this.validContainer, "score-reduction", difference);
+    
+    var difference = this.invalid - _invalid;
+    if (difference > 0) animateObject(this.invalidContainer, "score-addition", difference);
+    else if (difference < 0) animateObject(this.invalidContainer, "score-reduction", difference);
 
     for (var i = 0; i < brc.length; i++)  brc[i].updateColor();
   }
