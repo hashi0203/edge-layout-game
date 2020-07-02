@@ -3,6 +3,8 @@ class Score {
   constructor() {
     this.scoreContainer = document.querySelector(".score-container");
     this.bestContainer = document.querySelector(".best-container");
+    this.validContainer = document.querySelector(".valid-container");
+    this.invalidContainer = document.querySelector(".invalid-container");
     this.initializeScore();
     this.total_score = 0;
     this.invalid_num;
@@ -48,6 +50,7 @@ class Score {
     this.calcGroupScore();
     // console.log("branch_groups_length:" + this.branch_groups.length);
     this.calcConnectionScore();
+    this.calcJoints();
 
     // console.log(
     //   this.joint_score + " , " + this.boundary_joint_score + " , " + this.invalids_score
@@ -203,6 +206,18 @@ class Score {
     console.log("islands:", this.islands_score);
   }
 
+  calcJoints() {
+    console.log(brc);
+    var valid = 0;
+    var valid_bound = 0;
+    var invaid = 0;
+    for (var i = 0; i < brc.length; i++) {
+      valid += brc[i].joints.length;
+      valid_bound += brc[i].bounds.length;
+      invalid += brc[i].invalid_joints.length;
+    }
+    
+  }
 
 
   getNextBranch(joint_node) {
