@@ -8,7 +8,6 @@ function clamp(min,opt,max) {
 };
 
 function keyPressed() {
-    if (!flag) return;
     if (keyCode === ENTER) {
         // deactivate all branches
         for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
@@ -46,19 +45,41 @@ function keyPressed() {
 
 // selection of branches
 function mousePressed(event) {
-    if (!flag) return;
-    /* first get clicked position by 
-    console.log(event.layerX + ' , ' + event.layerY); 
-    or 
-    console.log(mouseX + ' , ' + mouseY);
+//     /* first get clicked position by 
+//     console.log(event.layerX + ' , ' + event.layerY); 
+//     or 
+//     console.log(mouseX + ' , ' + mouseY);
     
-    and then select
-    var branch = checkCloseBranch(20)[0];
+//     and then select
+//     var branch = checkCloseBranch(20)[0];
+//     */
+    
+//     var mouseVec = new createVector(mouseX, mouseY);
+//     var branch = checkCloseBranch(20, mouseVec);
+//     if (branch[0]) {
+//         for (var i = 0; i < brc.length; i++) brc[i].setSleep();
+//         for (var i = brc.length-1; i >= 0; i--) {
+//             if (branch[1][i]) {
+//                 active_brc_index = i;
+//                 brc[active_brc_index].setMoveActive();
+//                 break;
+//             }
+//         }
+//     }
+}
+
+// move and rotate 
+function mouseDragged(event) {
+    /*
+    see keyPressed
     */
-    
+  
     var mouseVec = new createVector(mouseX, mouseY);
-    var branch = checkCloseBranch(20, mouseVec);
-    if (branch[0]) {
+    var moveVec = new createVector(event.movementX, event.movementY);
+    var original_mouseVec = mouseVec.copy().sub(moveVec);
+    var branch = checkCloseBranch(20, original_mouseVec);
+    if (!branch[0]) return;
+    if (!branch[1][active_brc_index]) {
         for (var i = 0; i < brc.length; i++) brc[i].setSleep();
         for (var i = brc.length-1; i >= 0; i--) {
             if (branch[1][i]) {
@@ -68,20 +89,6 @@ function mousePressed(event) {
             }
         }
     }
-}
-
-// move and rotate 
-function mouseDragged(event) {
-    if (!flag) return;
-    /*
-    see keyPressed
-    */
-  
-    var mouseVec = new createVector(mouseX, mouseY);
-    var moveVec = new createVector(event.movementX, event.movementY);
-    var original_mouseVec = mouseVec.copy().sub(moveVec);
-    var branch = checkCloseBranch(20, original_mouseVec);
-    if (!branch[1][active_brc_index]) return;
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
@@ -103,10 +110,30 @@ function mouseDragged(event) {
 
 // deactivate the selected branch
 function mouseReleased() {
-    if (!flag) return;
     /*
     you might need to deselect the selected branch 
     */
+    /* first get clicked position by 
+    console.log(event.layerX + ' , ' + event.layerY); 
+    or 
+    console.log(mouseX + ' , ' + mouseY);
+    
+    and then select
+    var branch = checkCloseBranch(20)[0];
+    */
+    
+    var mouseVec = new createVector(mouseX, mouseY);
+    var branch = checkCloseBranch(20, mouseVec);
+    if (branch[0]) {
+        for (var i = 0; i < brc.length; i++) brc[i].setSleep();
+        for (var i = brc.length-1; i >= 0; i--) {
+            if (branch[1][i]) {
+                active_brc_index = i;
+                brc[active_brc_index].setMoveActive();
+                break;
+            }
+        }
+    }
 }
 
 function checkCloseBranch(thresholdDist, mouseVec) {
