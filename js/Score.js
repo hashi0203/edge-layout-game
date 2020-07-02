@@ -7,6 +7,8 @@ class Score {
     this.invalidContainer = document.querySelector(".invalid-container");
     this.initializeScore();
     this.total_score = 0;
+    this.valid;
+    this.invalid;
     this.invalid_num;
     this.best_score = localStorage.getItem("best_score");
     this.bestContainer.textContent = localStorage.getItem("best_score");
@@ -44,6 +46,8 @@ class Score {
   }
 
   updateScore() {
+    var _valid = this.valid;
+    var _invalid = 
     this.initializeScore();
     this.calcJointScores();
 
@@ -77,7 +81,6 @@ class Score {
   }
 
   calcJointScores() {
-    console.log(brc);
     for (var i = 0; i < brc.length; i++) {
       for (var j = 0; j < brc[i].joints.length; j++) {
         if (j < 5) {
@@ -207,16 +210,17 @@ class Score {
   }
 
   calcJoints() {
-    console.log(brc);
-    var valid = 0;
+    this.valid = 0;
     var valid_bound = 0;
-    var invaid = 0;
+    this.invaid = 0;
     for (var i = 0; i < brc.length; i++) {
-      valid += brc[i].joints.length;
+      this.valid += brc[i].joints.length;
       valid_bound += brc[i].bounds.length;
-      invalid += brc[i].invalid_joints.length;
+      this.invalid += brc[i].invalid_joints.length;
     }
-    
+    this.valid /= 2;
+    this.valid += valid_bound;
+    this.invalid /= 2;
   }
 
 

@@ -196,7 +196,7 @@ img {
     animation-fill-mode: both;
 }
 
-.score-container .score-reduction {
+.score-container .score-reduction, .valid-container .valid-reduction, .invalid-container .invalid-reduction {
     position: absolute;
     right: 30px;
     color: red;
