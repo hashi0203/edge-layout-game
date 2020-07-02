@@ -74,6 +74,7 @@ class Score {
   }
 
   calcJointScores() {
+    console.log(brc);
     for (var i = 0; i < brc.length; i++) {
       for (var j = 0; j < brc[i].joints.length; j++) {
         if (j < 5) {
