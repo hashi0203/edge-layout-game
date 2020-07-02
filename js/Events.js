@@ -48,7 +48,6 @@ function keyPressed() {
 
 // selection of branches
 function mousePressed(event) {
-    console.log(connected_flag);
     if (connected_flag == 1) return;
 //     /* first get clicked position by 
 //     console.log(event.layerX + ' , ' + event.layerY); 

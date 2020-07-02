@@ -39,6 +39,7 @@ function draw() {
       fill(50);
       text("Connected!", 60, height/2+20);
     
+      if (!document.getElementById("chk_stop").checked) connected_flag = 2;
       // stop a little while when connected
       if (connected_flag == 0) {
           var spanedSec = 0;
@@ -53,7 +54,7 @@ function draw() {
                   clearInterval(id);
               }
           }, 10);
-      }
+        }
     } else {
       connected_flag = 0;
     }
