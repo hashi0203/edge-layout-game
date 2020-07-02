@@ -10,6 +10,7 @@ function clamp(min,opt,max) {
 };
 
 function keyPressed() {
+    if (connected_flag == 1) return;
     if (keyCode === ENTER) {
         // deactivate all branches
         for (var i = 0; i < brc.length; i++)  brc[i].setSleep();
@@ -47,6 +48,8 @@ function keyPressed() {
 
 // selection of branches
 function mousePressed(event) {
+    console.log(connected_flag);
+    if (connected_flag == 1) return;
 //     /* first get clicked position by 
 //     console.log(event.layerX + ' , ' + event.layerY); 
 //     or 
@@ -72,6 +75,7 @@ function mousePressed(event) {
 
 // move and rotate 
 function mouseDragged(event) {
+    if (connected_flag == 1) return;
     /*
     see keyPressed
     */
@@ -129,6 +133,7 @@ function mouseDragged(event) {
 
 // deactivate the selected branch
 function mouseReleased() {
+    if (connected_flag == 1) return;
     /*
     you might need to deselect the selected branch 
     */
