@@ -39,6 +39,8 @@ class Score {
     this.cycle_score = 0;
     this.groups = [];
     this.branch_groups = [];
+    this.valid = 0;
+    this.invalid = 0;
     this.invalid_num = 0;
     this.new_connected = false;
     this.complete = false;
@@ -78,12 +80,14 @@ class Score {
     else if (difference < 0) animateObject(this.scoreContainer, "score-reduction", difference);
     
     var difference = this.valid - _valid;
-    if (difference > 0) animateObject(this.validContainer, "score-addition", difference);
-    else if (difference < 0) animateObject(this.validContainer, "score-reduction", difference);
+    this.validContainer.textContent = this.valid;
+    if (difference > 0) animateObject(this.validContainer, "valid-addition", difference);
+    else if (difference < 0) animateObject(this.validContainer, "valid-reduction", difference);
     
     var difference = this.invalid - _invalid;
-    if (difference > 0) animateObject(this.invalidContainer, "score-addition", difference);
-    else if (difference < 0) animateObject(this.invalidContainer, "score-reduction", difference);
+    this.invalidContainer.textContent = this.invalid;
+    if (difference > 0) animateObject(this.invalidContainer, "invalid-addition", difference);
+    else if (difference < 0) animateObject(this.invalidContainer, "invalid-reduction", difference);
 
     for (var i = 0; i < brc.length; i++)  brc[i].updateColor();
   }
