@@ -133,6 +133,10 @@ img {
     text-align: center;
 }
 
+.invalid-container {
+    user-select: none;
+}
+
 .save-container {
 
   /*position: absolute;*/
