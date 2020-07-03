@@ -104,6 +104,7 @@ Branch.prototype.transform = function () {
   // console.log("test");
   this.transformed_contour = this.getTransformedContour();
   this.transformed_skeleton = this.getTransformedSkeleton();
+  // // hogehoge
   // this.getTransformeInvalidPoints();
 
   if (brc[active_brc_index] !== undefined) {
@@ -150,6 +151,7 @@ Branch.prototype.getTransformedContour = function () {
 Branch.prototype.getTransformeInvalidPoints = function () {
   for (var i = 0; i < this.invalid_points.length; i++) {
     var _invalid = this.invalid_points[i].copy();
+    console.log(_invalid);
     if (this.mirror) _invalid.x = -_invalid.x;
     _invalid.rotate(this.rot);
     _invalid.add(this.pos)

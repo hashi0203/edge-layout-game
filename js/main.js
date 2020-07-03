@@ -26,6 +26,11 @@ function draw() {
   boundary.drawActivePoints(4, color(255, 240, 0, 200));
   for (var i = 0; i < brc.length; i++){
     brc[i].drawBranch();
+  }
+  for (var i = 0; i < brc.length; i++){
+    brc[i].drawIntersections();
+  }
+  for (var i = 0; i < brc.length; i++){
     brc[i].drawIntersections();
   }
 

@@ -101,8 +101,9 @@ function mouseDragged(event) {
     if (keyIsDown(CONTROL)) {
         let v1 = original_mouseVec.copy().sub(position);
         let v2 = mouseVec.copy().sub(position);
-        const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
-        angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
+        // const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
+        // angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
+        angle += v1.angleBetween(v2);
     } else {
         position.x = clamp(20, position.x + moveVec.x, 480);
         position.y = clamp(20, position.y + moveVec.y, 430);
@@ -129,6 +130,8 @@ function mouseDragged(event) {
 // deactivate the selected branch
 function mouseReleased() {
     if (connected_flag == 1) return;
+  
+    console.log(brc);
     /*
     you might need to deselect the selected branch 
     */
@@ -159,9 +162,9 @@ function mouseReleased() {
 
 
 function doubleClicked(event) {
-    console.log("aaaaa");
     if (connected_flag == 1) return;
     
+    if (drag_flag) return;
     var mouseVec = new createVector(mouseX, mouseY);
     var branch = checkCloseBranch(20, mouseVec);
     if (branch[0]) {
@@ -176,6 +179,8 @@ function doubleClicked(event) {
         }
     }
   
+    var position = brc[active_brc_index].pos.copy();
+    var angle = brc[active_brc_index].rot;
     brc[active_brc_index].setPosition(position.x, position.y);
     brc[active_brc_index].setAngle(angle); // in radians
     score.updateScore();
