@@ -64,7 +64,7 @@ h1.title {
   text-align: right;
 }
 
-.score-container, .best-container {
+.score-container, .best-container, .valid-container, .invalid-container {
   $height: 25px;
 
   position: relative;
@@ -92,7 +92,7 @@ h1.title {
     color: $tile-color;
   }
 
-  .score-addition {
+  .score-addition, .valid-addition, .invalid-addition {
     position: absolute;
     right: 30px;
     color: red;
@@ -111,7 +111,15 @@ h1.title {
 }
 
 .best-container:after {
-  content: "Best"
+  content: "Best";
+}
+
+.valid-container:after {
+    content: "Valid";
+}
+
+.invalid-container:after {
+    content: "Invalid";
 }
 
 p {
@@ -498,7 +506,7 @@ hr {
     margin: 0 auto;
   }
 
-  .score-container, .best-container {
+  .score-container, .best-container, .valid-container, .invalid-container {
     margin-top: 0;
     padding: 15px 10px;
     min-width: 40px;

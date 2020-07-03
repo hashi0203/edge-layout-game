@@ -149,9 +149,10 @@ UpdateJoints.prototype = {
       console.log("length:" + brc[this.other_index[_i]].transformed_skeleton[_closest_indices[1][0]].length + " ,index" +p2Shifted[0]);
     }
     vec2.sub(vec_other2); ////often something wrong here????
-    var _angleBet = degrees(p5.Vector.angleBetween(vec1, vec2));
+    var _angleBet = degrees(vec1.angleBetween(vec2));
+    // var _angleBet = degrees(p5.Vector.angleBetween(vec1, vec2));
     // console.log(_i + " ,"+ _angleBet);
-    return _angleBet;
+    return abs(_angleBet);
   },
 
   getSkeletonShiftedIndexes: function( _brc, _index1, _index2){ // index1: sub_branch index, index2:point index in the sub_branch

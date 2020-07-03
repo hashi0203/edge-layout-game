@@ -104,6 +104,7 @@ Branch.prototype.transform = function () {
   // console.log("test");
   this.transformed_contour = this.getTransformedContour();
   this.transformed_skeleton = this.getTransformedSkeleton();
+  // // hogehoge
   // this.getTransformeInvalidPoints();
 
   if (brc[active_brc_index] !== undefined) {
@@ -150,6 +151,7 @@ Branch.prototype.getTransformedContour = function () {
 Branch.prototype.getTransformeInvalidPoints = function () {
   for (var i = 0; i < this.invalid_points.length; i++) {
     var _invalid = this.invalid_points[i].copy();
+    console.log(_invalid);
     if (this.mirror) _invalid.x = -_invalid.x;
     _invalid.rotate(this.rot);
     _invalid.add(this.pos)
@@ -189,38 +191,59 @@ Branch.prototype.drawBranch = function () {
   //   ellipse(_pnt.x, _pnt.y, 10, 10);
   // }
 
-  this.drawIntersections();
-
+  // this.drawIntersections();
+  
+  let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
+  let c = this.color.levels;
+  c[3] = alpha;
+  this.color = color(c);
+  
   if (this.active) {
     //  you can add more graphic effects here.
     noStroke();
-    fill(255, 0, 0, 50);
-    ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
+    fill(0, 0, 200, 150);
+    ellipse(this.pos.x, this.pos.y, this.radius/3, this.radius/3);
   }
   pop();
 };
 
 Branch.prototype.updateColor = function () {
+  let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
   let gc = this.group.getColor();
   if (gc !== undefined) {
-    this.color = gc;
+    let c = gc.levels;
+    c[3] = alpha;
+    this.color = color(c);
   }
-  if (this.island) this.color = color(255, 50, 0);
-};
+  if (this.island) this.color = color(255, 50, 0, alpha);
+}
 
-
-Branch.prototype.drawIntersections = function () {
+Branch.prototype.drawValidIntersections = function () {
   for (var i = 0; i < this.joints.length; i++) {
     drawPoint(this.joints[i].center, 20, color(0, 255, 0));
   }
-  for (var i = 0; i < this.invalid_joints.length; i++) {
-    drawPoint(this.invalid_joints[i].center, 20, color(255, 0, 0));
-  }
+  // for (var i = 0; i < this.invalid_joints.length; i++) {
+  //   drawPoint(this.invalid_joints[i].center, 20, color(255, 0, 0));
+  // }
   for (var i = 0; i < this.bounds.length; i++) {
     //draw_area(bounds.get(i).excessPline, color(230, 230, 230));
     drawDashedPolyline(this.bounds[i].excessPline, 1, color(150));
     drawPoint(this.bounds[i].center, 20, color(0, 255, 0));
   }
+};
+
+Branch.prototype.drawInvalidIntersections = function () {
+  // for (var i = 0; i < this.joints.length; i++) {
+  //   drawPoint(this.joints[i].center, 20, color(0, 255, 0));
+  // }
+  for (var i = 0; i < this.invalid_joints.length; i++) {
+    drawPoint(this.invalid_joints[i].center, 20, color(255, 0, 0));
+  }
+  // for (var i = 0; i < this.bounds.length; i++) {
+  //   //draw_area(bounds.get(i).excessPline, color(230, 230, 230));
+  //   drawDashedPolyline(this.bounds[i].excessPline, 1, color(150));
+  //   drawPoint(this.bounds[i].center, 20, color(0, 255, 0));
+  // }
 };
 
 
@@ -315,7 +338,8 @@ Branch.prototype.getClosestPointGeneral = function (pnt, pnt_list, _dir, deviati
     if (pnt.dist(pnt_list[i]) < 5) continue;
     var current_vec = pnt_list[i].copy();
     current_vec.sub(pnt);
-    var current_angle = p5.Vector.angleBetween(current_vec, _dir);
+    var current_angle = current_vec.angleBetween(_dir);
+    // var current_angle = p5.Vector.angleBetween(current_vec, _dir);
     if (current_angle > deviation) continue;
     var distance = pnt.dist(pnt_list[i]);
     if (distance < min_dist) {
