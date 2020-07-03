@@ -18,22 +18,12 @@ function setup() {
   active_brc_index = 0;
   brc[active_brc_index].setMoveActive();
   
-  var position = brc[active_brc_index].pos.copy();
-    var angle = brc[active_brc_index].rot;
-    
-    if (keyIsDown(CONTROL)) {
-        let v1 = original_mouseVec.copy().sub(position);
-        let v2 = mouseVec.copy().sub(position);
-        // const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
-        // angle += Math.sign(v1.cross(v2).z || 1) * Math.acos(Math.min(1, Math.max(-1, dotmagmag)));
-        angle += v1.angleBetween(v2);
-    } else {
-        position.x = clamp(20, position.x + moveVec.x, 480);
-        position.y = clamp(20, position.y + moveVec.y, 430);
-    }
-    
-    brc[active_brc_index].setPosition(position.x, position.y);
-    brc[active_brc_index].setAngle(angle); // in radians
+  for (var i = 0; i < brc.length; i++) {
+    var position = brc[i].pos.copy();
+    var angle = brc[i].rot;
+    brc[i].setPosition(position.x, position.y);
+    brc[i].setAngle(angle); // in radians
+  }
   
   score.updateScore(); // initial calculation
 }
