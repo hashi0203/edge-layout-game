@@ -29,12 +29,12 @@ function keyPressed() {
     } else if (keyCode === RIGHT_ARROW) {
         if (keyIsDown(CONTROL)) angle += 0.1 * PI; // change angle if Ctrl is pressed
         else moveVec.add(10, 0); // change position
-    }
-    else if (keyCode === UP_ARROW) {
+    } else if (keyCode === UP_ARROW) {
         moveVec.add(0, -10); // go up. Note that the value is mirrored due to the origin is top left corner.
-    }
-    else if (keyCode === DOWN_ARROW) {
+    } else if (keyCode === DOWN_ARROW) {
         moveVec.add(0, 10); // go down
+    } else if (keyCode == SHIFT) {
+        brc[active_brc_index].mirror = !brc[active_brc_index].mirror;
     }
   
     position.x = clamp(20, position.x + moveVec.x, 480);
@@ -155,6 +155,18 @@ function mouseReleased() {
             }
         }
     }
+}
+
+
+function ondblclick(event) {
+    console.log("aaaaa");
+    if (connected_flag == 1) return;
+    
+    brc[active_brc_index].mirror = !brc[active_brc_index].mirror;
+  
+    brc[active_brc_index].setPosition(position.x, position.y);
+    brc[active_brc_index].setAngle(angle); // in radians
+    score.updateScore();
 }
 
 function checkCloseBranch(thresholdDist, mouseVec) {
