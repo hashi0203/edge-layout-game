@@ -7,7 +7,7 @@ function clamp(min,opt,max) {
         return max;
     }
     return opt;
-};
+}
 
 function keyPressed() {
     if (connected_flag == 1) return;
@@ -34,7 +34,7 @@ function keyPressed() {
     } else if (keyCode === DOWN_ARROW) {
         moveVec.add(0, 10); // go down
     } else if (keyCode == SHIFT) {
-        brc[active_brc_index].mirror = !brc[active_brc_index].mirror;
+        brc[active_brc_index].setMirror();
     }
   
     position.x = clamp(20, position.x + moveVec.x, 480);
@@ -158,16 +158,28 @@ function mouseReleased() {
 }
 
 
-function ondblclick(event) {
+function doubleClicked(event) {
     console.log("aaaaa");
     if (connected_flag == 1) return;
     
-    brc[active_brc_index].mirror = !brc[active_brc_index].mirror;
+    var mouseVec = new createVector(mouseX, mouseY);
+    var branch = checkCloseBranch(20, mouseVec);
+    if (branch[0]) {
+        for (var i = 0; i < brc.length; i++) brc[i].setSleep();
+        for (var i = brc.length-1; i >= 0; i--) {
+            if (branch[1][i]) {
+                active_brc_index = i;
+                brc[active_brc_index].setMoveActive();
+                brc[active_brc_index].setMirror();
+                break;
+            }
+        }
+    }
   
     brc[active_brc_index].setPosition(position.x, position.y);
     brc[active_brc_index].setAngle(angle); // in radians
     score.updateScore();
-}
+};
 
 function checkCloseBranch(thresholdDist, mouseVec) {
     var closeBranch = false;

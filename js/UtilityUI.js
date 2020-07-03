@@ -1,14 +1,14 @@
-function doubleClicked(e) {
-  window.blockMenuHeaderScroll = true;
-  var test = checkCloseBranch();
-  if (test[0]) {
-    // console.log( test[0] + " ," + test[1]) ;
-    active_brc_index = test[1];
-    brc[active_brc_index].setMirror();
-    brc[active_brc_index].transform()
-    score.updateScore();
-  }
-}
+// function doubleClicked(e) {
+//   window.blockMenuHeaderScroll = true;
+//   var test = checkCloseBranch();
+//   if (test[0]) {
+//     // console.log( test[0] + " ," + test[1]) ;
+//     active_brc_index = test[1];
+//     brc[active_brc_index].setMirror();
+//     brc[active_brc_index].transform();
+//     score.updateScore();
+//   }
+// }
 
 function imageClicked() {
   // var branch = this.elt.value; // somehow not working

@@ -322,7 +322,8 @@ Branch.prototype.getClosestPointGeneral = function (pnt, pnt_list, _dir, deviati
     if (pnt.dist(pnt_list[i]) < 5) continue;
     var current_vec = pnt_list[i].copy();
     current_vec.sub(pnt);
-    var current_angle = p5.Vector.angleBetween(current_vec, _dir);
+    var current_angle = current_vec.angleBetween(_dir);
+    // var current_angle = p5.Vector.angleBetween(current_vec, _dir);
     if (current_angle > deviation) continue;
     var distance = pnt.dist(pnt_list[i]);
     if (distance < min_dist) {
