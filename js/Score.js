@@ -3,8 +3,12 @@ class Score {
   constructor() {
     this.scoreContainer = document.querySelector(".score-container");
     this.bestContainer = document.querySelector(".best-container");
+    this.validContainer = document.querySelector(".valid-container");
+    this.invalidContainer = document.querySelector(".invalid-container");
     this.initializeScore();
     this.total_score = 0;
+    this.valid;
+    this.invalid;
     this.invalid_num;
     this.best_score = localStorage.getItem("best_score");
     this.bestContainer.textContent = localStorage.getItem("best_score");
@@ -35,6 +39,8 @@ class Score {
     this.cycle_score = 0;
     this.groups = [];
     this.branch_groups = [];
+    this.valid = 0;
+    this.invalid = 0;
     this.invalid_num = 0;
     this.new_connected = false;
     this.complete = false;
@@ -42,12 +48,15 @@ class Score {
   }
 
   updateScore() {
+    var _valid = this.valid;
+    var _invalid = this.invalid;
     this.initializeScore();
     this.calcJointScores();
 
     this.calcGroupScore();
     // console.log("branch_groups_length:" + this.branch_groups.length);
     this.calcConnectionScore();
+    this.calcJoints();
 
     // console.log(
     //   this.joint_score + " , " + this.boundary_joint_score + " , " + this.invalids_score
@@ -69,6 +78,16 @@ class Score {
 
     if (difference > 0) animateObject(this.scoreContainer, "score-addition", difference);
     else if (difference < 0) animateObject(this.scoreContainer, "score-reduction", difference);
+    
+    var difference = this.valid - _valid;
+    this.validContainer.textContent = this.valid;
+    if (difference > 0) animateObject(this.validContainer, "valid-addition", difference);
+    else if (difference < 0) animateObject(this.validContainer, "valid-reduction", difference);
+    
+    var difference = this.invalid - _invalid;
+    this.invalidContainer.textContent = this.invalid;
+    if (difference > 0) animateObject(this.invalidContainer, "invalid-addition", difference);
+    else if (difference < 0) animateObject(this.invalidContainer, "invalid-reduction", difference);
 
     for (var i = 0; i < brc.length; i++)  brc[i].updateColor();
   }
@@ -202,6 +221,19 @@ class Score {
     console.log("islands:", this.islands_score);
   }
 
+  calcJoints() {
+    this.valid = 0;
+    var valid_bound = 0;
+    this.invaid = 0;
+    for (var i = 0; i < brc.length; i++) {
+      this.valid += brc[i].joints.length;
+      valid_bound += brc[i].bounds.length;
+      this.invalid += brc[i].invalid_joints.length;
+    }
+    this.valid /= 2;
+    this.valid += valid_bound;
+    this.invalid /= 2;
+  }
 
 
   getNextBranch(joint_node) {
