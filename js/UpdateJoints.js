@@ -176,7 +176,6 @@ UpdateJoints.prototype = {
       var angle_between = this.calcJointAngle(_index, i, closest_indices);
 
       // Instance 2) If the intersection angle exceeds the this.maxJointAngle, the joint is invalid.
-      console.log(angle_between);
       if (angle_between>this.maxJointAngle || angle_between<(180-this.maxJointAngle)) {
         this.addInvalid(_index, i, "Maximum intersection angle exceeded");
         continue;

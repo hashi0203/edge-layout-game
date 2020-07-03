@@ -130,8 +130,6 @@ function mouseDragged(event) {
 // deactivate the selected branch
 function mouseReleased() {
     if (connected_flag == 1) return;
-  
-    console.log(brc);
     /*
     you might need to deselect the selected branch 
     */

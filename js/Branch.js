@@ -218,18 +218,32 @@ Branch.prototype.updateColor = function () {
   if (this.island) this.color = color(255, 50, 0, alpha);
 }
 
-Branch.prototype.drawIntersections = function () {
+Branch.prototype.drawValidIntersections = function () {
   for (var i = 0; i < this.joints.length; i++) {
     drawPoint(this.joints[i].center, 20, color(0, 255, 0));
   }
-  for (var i = 0; i < this.invalid_joints.length; i++) {
-    drawPoint(this.invalid_joints[i].center, 20, color(255, 0, 0));
-  }
+  // for (var i = 0; i < this.invalid_joints.length; i++) {
+  //   drawPoint(this.invalid_joints[i].center, 20, color(255, 0, 0));
+  // }
   for (var i = 0; i < this.bounds.length; i++) {
     //draw_area(bounds.get(i).excessPline, color(230, 230, 230));
     drawDashedPolyline(this.bounds[i].excessPline, 1, color(150));
     drawPoint(this.bounds[i].center, 20, color(0, 255, 0));
   }
+};
+
+Branch.prototype.drawInvalidIntersections = function () {
+  // for (var i = 0; i < this.joints.length; i++) {
+  //   drawPoint(this.joints[i].center, 20, color(0, 255, 0));
+  // }
+  for (var i = 0; i < this.invalid_joints.length; i++) {
+    drawPoint(this.invalid_joints[i].center, 20, color(255, 0, 0));
+  }
+  // for (var i = 0; i < this.bounds.length; i++) {
+  //   //draw_area(bounds.get(i).excessPline, color(230, 230, 230));
+  //   drawDashedPolyline(this.bounds[i].excessPline, 1, color(150));
+  //   drawPoint(this.bounds[i].center, 20, color(0, 255, 0));
+  // }
 };
 
 
