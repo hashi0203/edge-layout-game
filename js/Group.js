@@ -14,7 +14,7 @@ class Group {
 
   setColor( _color){
     this.color = _color;
-    console.log(this.color );
+    // console.log(this.color );
   }
 
   getColor(){

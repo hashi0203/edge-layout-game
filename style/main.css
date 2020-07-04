@@ -125,7 +125,7 @@ img {
 }
 
 .bgpink {
-    background: rgba(255,130,255,1);
+    background: rgba(255,130,255,0.78);
 }
 
 .bgblue {
@@ -133,7 +133,15 @@ img {
 }
 
 .bgwater {
-    background: rgba(0,255,0,1);
+    background: rgba(126,172,255,0.78);
+}
+
+.bglgreen {
+    background: rgba(126,213,97,0.78);
+}
+
+.bgorange {
+    background: rgba(244,137,36,0.78);
 }
 
 .keyboard {
