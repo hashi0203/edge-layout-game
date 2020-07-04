@@ -117,11 +117,23 @@ img {
 }
 
 .bgred {
-    background: rgba(255,0,0,255);
+    background: rgba(255,0,0,1);
 }
 
 .bgyellow {
-    background: rgba(255,255,0,255);
+    background: rgba(255,255,0,1);
+}
+
+.bgpink {
+    background: rgba(255,130,255,1);
+}
+
+.bgblue {
+    background: rgba(0,0,200,0.6);
+}
+
+.bgwater {
+    background: rgba(0,255,0,1);
 }
 
 .keyboard {
