@@ -36,22 +36,26 @@
           <h1>ルール</h1>
           <ul>
               <li>ランダムに置かれたすべての木を使って4つの黄色い丸で示された角を繋げてください．</li>
+              <ul>
+                <li>繋がってない枝は赤色で表示されます．</li>
+                <li>繋がった枝は赤以外の同じ色で表示されます．</li>
+              </ul>
               <li>それぞれの木は移動・回転・反転させることができます．</li>
+              <li>青い丸は回転の中心を表しています．</li>
               <li>交わる角度が小さかったり，十分に交差していなかったりすると交わっていると判定されないので注意してください．</li>
+              <ul>
+                <li>正しく交差している点は緑色の丸で表示されます．</li>
+                <li>正しく交差していない点は赤色の丸で表示されます．</li>
+              </ul>
               <li>灰色の枠線の外側は無効です．</li>
               <li><input type="checkbox" id="chk_stop" checked="checked">クリアした時に枝の動きを止めたい場合はチェックしてください(1秒ほどで再び動かせるようになります)．</li>
           </ul>
           <h1>遊び方</h1> 
           <ul>
-              <li><span class="keyboard">クリック</span> or <span class="keyboard">Enter</span>： 枝の選択</li>
-              <li><span class="keyboard">ドラッグ</span> or <span class="keyboard">↑</span>： 枝の移動</li>
-              <li>Rotate the branch by Drag or Left or Right keys with Control key </li>
-              <li> Mirror the branch by Double Click or Shift key </li>
-          </ul>
-          <h1> Colors: </h1>
-          <ul>
-              <li>Green dots: valid joints. Red dots: invalid joints</li>
-              <li>Invalid group: Red branches. Valid group: other colors.</li>
+              <li>枝の選択：<span class="keyboard">クリック</span> or <span class="keyboard">Enter</span></li>
+              <li>枝の移動：<span class="keyboard">ドラッグ</span> or <span class="keyboard">←</span><span class="keyboard">↑</span><span class="keyboard">↓</span><span class="keyboard">→</span></li>
+              <li>枝の回転：<span class="keyboard">z</span> + <span class="keyboard">ドラッグ</span> or <span class="keyboard">z</span> + <span class="keyboard">←</span><span class="keyboard">↑</span><span class="keyboard">↓</span><span class="keyboard">→</span></li>
+              <li>枝の反転：<span class="keyboard">ダブルクリック</span> or <span class="keyboard">r</span></li>
           </ul>
         </instruction>
 
