@@ -32,14 +32,21 @@
     <div class="container" id="container">
       <div class="heading">
         <instruction>
-          <h1> Goal: Connect 4 corners by moving and rotating branches </h1>
-          <h1> How to use: </h1> 
+          <h1>枝配置ゲーム</h1>
+          <h1>ルール</h1>
+          <ul>
+              <li>ランダムに置かれたすべての木を使って4つの黄色い丸で示された角を繋げてください．</li>
+              <li>それぞれの木は移動・回転・反転させることができます．</li>
+              <li>交わる角度が小さかったり，十分に交差していなかったりすると交わっていると判定されないので注意してください．</li>
+              <li>灰色の枠線の外側は無効です．</li>
+              <li><input type="checkbox" id="chk_stop" checked="checked">クリアした時に枝の動きを止めたい場合はチェックしてください(1秒ほどで再び動かせるようになります)</li>
+          </ul>
+          <h1>遊び方</h1> 
           <ul>
               <li>Select a branch by Click or Enter key</li>
               <li>Move the branch by Drag or Up, Down, Left, Right keys </li>
               <li>Rotate the branch by Drag or Left or Right keys with Control key </li>
               <li> Mirror the branch by Double Click or Shift key </li>
-              <li><input type="checkbox" id="chk_stop" checked="checked">If you want to stop for a while when you clear this game, check this box</li>
           </ul>
           <h1> Colors: </h1>
           <ul>

@@ -24,10 +24,10 @@ function keyPressed() {
     var moveVec = new createVector(0, 0);
 
     if (keyCode === LEFT_ARROW) {
-        if (keyIsDown(CONTROL)) angle -= 0.1 * PI; // change angle if Ctrl is pressed
+        if (keyIsDown(90)) angle -= 0.1 * PI; // change angle if Ctrl is pressed
         else moveVec.add(-10, 0); // change position
     } else if (keyCode === RIGHT_ARROW) {
-        if (keyIsDown(CONTROL)) angle += 0.1 * PI; // change angle if Ctrl is pressed
+        if (keyIsDown(90)) angle += 0.1 * PI; // change angle if Ctrl is pressed
         else moveVec.add(10, 0); // change position
     } else if (keyCode === UP_ARROW) {
         moveVec.add(0, -10); // go up. Note that the value is mirrored due to the origin is top left corner.
