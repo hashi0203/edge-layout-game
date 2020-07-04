@@ -180,7 +180,7 @@ class Score {
     var num_islands = 0;
     this.island_exist = false;
     // console.log("checkConnectionScore, _branch_groups.length:" +_branch_groups.length );
-    var colors = [color(255, 130, 255, 200), color(126, 172, 255, 200), color(126, 213, 97, 200), color(244, 137, 36, 200)]
+    var colors = [color(255, 130, 255, 200), color(126, 172, 255, 200), color(48, 195, 158, 200), color(244, 137, 36, 200)]
     for (var i = 0; i < this.branch_groups.length; i++) {
       var _group = new Group(this.branch_groups[i], i);
       if (i < colors.length) var col = colors[i];

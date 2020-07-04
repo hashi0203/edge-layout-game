@@ -116,32 +116,44 @@ img {
     padding: 3px;
 }
 
-.bgred {
-    background: rgba(255,0,0,1);
-}
-
 .bgyellow {
-    background: rgba(255,255,0,1);
+    background: rgba(255,240,0,0.78);
 }
 
-.bgpink {
-    background: rgba(255,130,255,0.78);
-}
-
-.bgblue {
-    background: rgba(0,0,200,0.6);
+.bgbrown {
+    background: rgba(144,98,60,1);
 }
 
 .bgwater {
     background: rgba(126,172,255,0.78);
 }
 
-.bglgreen {
-    background: rgba(126,213,97,0.78);
+.bgpink {
+    background: rgba(255,130,255,0.78);
+}
+
+.bgdgreen {
+    background: rgba(48,195,158,0.78);
 }
 
 .bgorange {
     background: rgba(244,137,36,0.78);
+}
+
+.bgblue {
+    background: rgba(0,0,200,0.4);
+}
+
+.bggreen {
+    background: rgba(0,255,0,1);
+}
+
+.bgred {
+    background: rgba(255,0,0,1);
+}
+
+.bggray {
+    background: rgba(30,30,0,0.4);
 }
 
 .keyboard {

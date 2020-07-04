@@ -215,7 +215,7 @@ Branch.prototype.updateColor = function () {
     c[3] = alpha;
     this.color = color(c);
   }
-  if (this.island) this.color = color(255, 50, 0, alpha);
+  if (this.island) this.color = color(144, 98, 60, alpha);
 }
 
 Branch.prototype.drawValidIntersections = function () {
