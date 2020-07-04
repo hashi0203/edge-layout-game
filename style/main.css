@@ -153,7 +153,7 @@ img {
 }
 
 .bggray {
-    background: rgba(30,30,0,0.4);
+    background: rgba(187,171,160,0.78);
 }
 
 .keyboard {
@@ -182,6 +182,7 @@ img {
     background: #bbada0;
     padding: 15px 25px;
     font-size: 25px;
+    min-width: 71px;
     height: 25px;
     line-height: 47px;
     font-weight: bold;
@@ -191,11 +192,12 @@ img {
     /* margin-left: 3px; */
     /* margin-right: 3px; */
     text-align: center;
-}
-
-.invalid-container {
     user-select: none;
 }
+
+/* .invalid-container {
+    user-select: none;
+} */
 
 .save-container {
 
@@ -279,19 +281,19 @@ img {
 
 
 .score-container:after {
-    content: "Score";
+    content: "スコア";
 }
 
 .best-container:after {
-    content: "Best";
+    content: "ベストスコア";
 }
 
 .valid-container:after {
-    content: "Valid";
+    content: "正しい交点数";
 }
 
 .invalid-container:after {
-    content: "Invalid";
+    content: "正しくない交点数";
 }
 
 

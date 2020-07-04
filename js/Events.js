@@ -98,7 +98,7 @@ function mouseDragged(event) {
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
     
-    if (keyIsDown(CONTROL)) {
+    if (keyIsDown(90)) { // change angle if z is pressed
         let v1 = original_mouseVec.copy().sub(position);
         let v2 = mouseVec.copy().sub(position);
         // const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
