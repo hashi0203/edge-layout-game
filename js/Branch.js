@@ -193,7 +193,7 @@ Branch.prototype.drawBranch = function () {
 
   // this.drawIntersections();
   
-  let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
+  let alpha = (this.active) ? 120 + 80 * sin(frameCount / 20) : 255;
   let c = this.color.levels;
   c[3] = alpha;
   this.color = color(c);
@@ -208,14 +208,14 @@ Branch.prototype.drawBranch = function () {
 };
 
 Branch.prototype.updateColor = function () {
-  let alpha = (this.active) ? 120 + 60 * sin(frameCount / 20) : 255;
+  let alpha = (this.active) ? 120 + 80 * sin(frameCount / 20) : 255;
   let gc = this.group.getColor();
   if (gc !== undefined) {
     let c = gc.levels;
     c[3] = alpha;
     this.color = color(c);
   }
-  if (this.island) this.color = color(255, 50, 0, alpha);
+  if (this.island) this.color = color(144, 98, 60, alpha);
 }
 
 Branch.prototype.drawValidIntersections = function () {

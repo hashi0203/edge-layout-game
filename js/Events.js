@@ -24,16 +24,16 @@ function keyPressed() {
     var moveVec = new createVector(0, 0);
 
     if (keyCode === LEFT_ARROW) {
-        if (keyIsDown(CONTROL)) angle -= 0.1 * PI; // change angle if Ctrl is pressed
+        if (keyIsDown(90)) angle -= 0.1 * PI; // change angle if z is pressed
         else moveVec.add(-10, 0); // change position
     } else if (keyCode === RIGHT_ARROW) {
-        if (keyIsDown(CONTROL)) angle += 0.1 * PI; // change angle if Ctrl is pressed
+        if (keyIsDown(90)) angle += 0.1 * PI; // change angle if z is pressed
         else moveVec.add(10, 0); // change position
     } else if (keyCode === UP_ARROW) {
         moveVec.add(0, -10); // go up. Note that the value is mirrored due to the origin is top left corner.
     } else if (keyCode === DOWN_ARROW) {
         moveVec.add(0, 10); // go down
-    } else if (keyCode == SHIFT) {
+    } else if (keyCode == 82) { // mirror if r is pressed
         brc[active_brc_index].setMirror();
     }
   
@@ -98,7 +98,7 @@ function mouseDragged(event) {
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
     
-    if (keyIsDown(CONTROL)) {
+    if (keyIsDown(90)) { // change angle if z is pressed
         let v1 = original_mouseVec.copy().sub(position);
         let v2 = mouseVec.copy().sub(position);
         // const dotmagmag = v1.dot(v2) / (v1.mag() * v2.mag());
