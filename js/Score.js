@@ -10,8 +10,8 @@ class Score {
     this.valid;
     this.invalid;
     this.invalid_num;
-    this.best_score = localStorage.getItem("best_score");
-    this.bestContainer.textContent = localStorage.getItem("best_score");
+    this.best_score = (localStorage.getItem("best_score") == null ? 0 : localStorage.getItem("best_score"));
+    this.bestContainer.textContent = (localStorage.getItem("best_score") == null ? 0 : localStorage.getItem("best_score"));
     this.island_exist = false;
     this.new_connected = false;
     this.complete = false;
