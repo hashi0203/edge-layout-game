@@ -195,10 +195,6 @@ img {
     user-select: none;
 }
 
-/* .invalid-container {
-    user-select: none;
-} */
-
 .save-container {
 
   /*position: absolute;*/
@@ -294,6 +290,14 @@ img {
 
 .invalid-container:after {
     content: "正しくない交点数";
+}
+
+.valid-container:after {
+    content: "Valid";
+}
+
+.invalid-container:after {
+    content: "Invalid";
 }
 
 
