@@ -70,6 +70,20 @@ function mousePressed(event) {
 //             }
 //         }
 //     }
+  
+    var mouseVec = new createVector(mouseX, mouseY);
+    var branch = checkCloseBranch(20, mouseVec);
+    if (!branch[0]) return;
+    if (!branch[1][active_brc_index]) {
+        for (var i = 0; i < brc.length; i++) brc[i].setSleep();
+        for (var i = brc.length-1; i >= 0; i--) {
+            if (branch[1][i]) {
+                active_brc_index = i;
+                brc[active_brc_index].setMoveActive();
+                break;
+            }
+        }
+    }
 }
 
 // move and rotate 
@@ -83,17 +97,17 @@ function mouseDragged(event) {
     var moveVec = new createVector(event.movementX, event.movementY);
     var original_mouseVec = mouseVec.copy().sub(moveVec);
     var branch = checkCloseBranch(20, original_mouseVec);
-    if (!branch[0]) return;
-    if (!branch[1][active_brc_index]) {
-        for (var i = 0; i < brc.length; i++) brc[i].setSleep();
-        for (var i = brc.length-1; i >= 0; i--) {
-            if (branch[1][i]) {
-                active_brc_index = i;
-                brc[active_brc_index].setMoveActive();
-                break;
-            }
-        }
-    }
+    // if (!branch[0]) return;
+    // if (!branch[1][active_brc_index]) {
+    //     for (var i = 0; i < brc.length; i++) brc[i].setSleep();
+    //     for (var i = brc.length-1; i >= 0; i--) {
+    //         if (branch[1][i]) {
+    //             active_brc_index = i;
+    //             brc[active_brc_index].setMoveActive();
+    //             break;
+    //         }
+    //     }
+    // }
   
     var position = brc[active_brc_index].pos.copy();
     var angle = brc[active_brc_index].rot;
