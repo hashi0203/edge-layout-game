@@ -292,14 +292,14 @@ img {
     content: "正しくない交点数";
 }
 
-.valid-container:after {
+/* .valid-container:after {
     content: "Valid";
 }
 
 .invalid-container:after {
     content: "Invalid";
 }
-
+ */
 
 .drop-active {
     border-color: #aaa;
