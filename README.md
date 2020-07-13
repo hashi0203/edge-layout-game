@@ -1,8 +1,9 @@
 # 変更点等
 
-元の内容を元に授業で変更した点，デモ動画を以下に示す．
+元の内容を元に授業で変更した点，デモURL，デモ動画を以下に示す．
 ただし，個人情報については置き換えた内容になっている．  
 [レポート](https://cdn.glitch.com/981464f2-8a86-4a74-97a2-ee799cb8f69c%2Freport.pdf?v=1594627961158)  
+[デモURL](https://hashi0203-edge-layout-game.glitch.me/)  
 [デモ動画](https://cdn.glitch.com/981464f2-8a86-4a74-97a2-ee799cb8f69c%2Fdemo.mp4?v=1594627155446)  
 
 User Interface Coursework
